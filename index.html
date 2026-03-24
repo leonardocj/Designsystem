@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System — Social Brand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ── CORES PRIMÁRIAS ── */
+    --green-900: #1A2E20;
+    --green-800: #2B4A33;
+    --green-700: #3B6645;
+    --green-600: #4A7C55;
+    --green-500: #5C9265;
+    --green-400: #7AAB82;
+    --green-200: #BDD5C2;
+    --green-100: #E0EDE3;
+    --green-50:  #F2F8F3;
+
+    /* ── NEUTROS ── */
+    --cream-900: #1C1A17;
+    --cream-700: #4A4740;
+    --cream-500: #7A7770;
+    --cream-300: #C0BDB6;
+    --cream-200: #D8D5CE;
+    --cream-100: #EBE8E1;
+    --cream-50:  #F5F2EB;
+    --white:     #FFFFFF;
+
+    /* ── TYPOGRAPHY ── */
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Libre Baskerville', Georgia, serif;
+    --font-ui: 'Montserrat', Helvetica, sans-serif;
+
+    /* ── SPACING SCALE ── */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 64px;
+    --space-9: 96px;
+    --space-10: 128px;
+
+    /* ── BORDER RADIUS ── */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+    --radius-xl: 16px;
+    --radius-pill: 999px;
+
+    /* ── SHADOWS ── */
+    --shadow-sm: 0 1px 3px rgba(26,46,32,0.08), 0 1px 2px rgba(26,46,32,0.04);
+    --shadow-md: 0 4px 12px rgba(26,46,32,0.12), 0 2px 4px rgba(26,46,32,0.06);
+    --shadow-lg: 0 16px 40px rgba(26,46,32,0.16), 0 4px 8px rgba(26,46,32,0.08);
+    --shadow-inset: inset 0 1px 3px rgba(26,46,32,0.1);
+
+    /* ── TRANSITIONS ── */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream-50);
+    color: var(--cream-900);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ───────── LAYOUT ───────── */
+  .page-header {
+    background: var(--green-900);
+    color: var(--white);
+    padding: 64px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 200px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .page-header-eyebrow {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green-400);
+    margin-bottom: 16px;
+  }
+  .page-header h1 {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .page-header h1 em {
+    font-style: italic;
+    color: var(--green-400);
+  }
+  .page-header p {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--green-200);
+    max-width: 480px;
+    letter-spacing: 0.02em;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
+  .section { padding: 80px 0; border-bottom: 1px solid var(--cream-200); }
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--green-600);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--green-900);
+    margin-bottom: 48px;
+    line-height: 1.1;
+  }
+
+  /* ───────── COLOR PALETTE ───────── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .color-swatch {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .color-block {
+    height: 80px;
+    position: relative;
+  }
+  .color-block-inner {
+    height: 40px;
+  }
+  .color-info {
+    padding: 12px 14px;
+    background: var(--white);
+    border-top: 1px solid var(--cream-100);
+  }
+  .color-name {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cream-900);
+    margin-bottom: 2px;
+  }
+  .color-hex {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--cream-500);
+  }
+  .color-token {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--green-500);
+    margin-top: 2px;
+  }
+
+  /* ───────── TYPOGRAPHY ───────── */
+  .type-sample {
+    padding: 32px 40px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    margin-bottom: 12px;
+    border: 1px solid var(--cream-100);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .type-sample-text { flex: 1; }
+  .type-meta {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: var(--cream-500);
+    text-align: right;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .type-meta strong {
+    display: block;
+    font-size: 12px;
+    color: var(--green-600);
+    margin-bottom: 4px;
+  }
+
+  /* ───────── SPACING ───────── */
+  .spacing-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .spacing-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--white);
+    padding: 16px 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--cream-100);
+  }
+  .spacing-block {
+    background: var(--green-500);
+    height: 24px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .spacing-label {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--cream-500);
+    min-width: 60px;
+  }
+  .spacing-value {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--green-700);
+    font-weight: 600;
+  }
+  .spacing-token {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--cream-500);
+    margin-left: auto;
+  }
+
+  /* ───────── BUTTONS ───────── */
+  .component-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0);
+    transition: background var(--transition-fast);
+  }
+  .btn:hover::after { background: rgba(255,255,255,0.1); }
+
+  .btn-primary {
+    background: var(--green-900);
+    color: var(--white);
+    padding: 14px 32px;
+    font-size: 11px;
+    border-radius: var(--radius-sm);
+  }
+  .btn-primary:hover { background: var(--green-800); box-shadow: var(--shadow-md); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--green-900);
+    padding: 13px 31px;
+    font-size: 11px;
+    border: 1px solid var(--green-900);
+    border-radius: var(--radius-sm);
+  }
+  .btn-outline:hover { background: var(--green-900); color: var(--white); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--green-700);
+    padding: 14px 24px;
+    font-size: 11px;
+    border-radius: var(--radius-sm);
+  }
+  .btn-ghost:hover { background: var(--green-50); }
+
+  .btn-cream {
+    background: var(--cream-50);
+    color: var(--green-900);
+    padding: 14px 32px;
+    font-size: 11px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--cream-200);
+  }
+  .btn-cream:hover { background: var(--white); box-shadow: var(--shadow-sm); }
+
+  .btn-sm { padding: 9px 20px; font-size: 10px; }
+  .btn-lg { padding: 18px 48px; font-size: 12px; }
+
+  .btn-icon {
+    background: var(--green-900);
+    color: var(--white);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    transition: all var(--transition-base);
+  }
+  .btn-icon:hover { background: var(--green-800); transform: scale(1.05); }
+
+  /* ───────── CARDS ───────── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+  }
+  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+  .card-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    background: var(--green-200);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-image-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--green-800) 0%, var(--green-600) 50%, var(--green-400) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-image-placeholder span {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+  }
+
+  .card-body { padding: 24px; }
+  .card-tag {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-500);
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--green-900);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .card-desc {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--cream-500);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .card-link {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-700);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap var(--transition-fast);
+  }
+  .card-link:hover { gap: 10px; }
+
+  .card-dark {
+    background: var(--green-900);
+    color: var(--white);
+  }
+  .card-dark .card-tag { color: var(--green-400); }
+  .card-dark .card-title { color: var(--white); }
+  .card-dark .card-desc { color: var(--green-200); }
+  .card-dark .card-link { color: var(--green-400); }
+
+  /* ───────── FORMS ───────── */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-label {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream-700);
+  }
+  .form-input {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--cream-900);
+    background: var(--white);
+    border: 1px solid var(--cream-200);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    outline: none;
+  }
+  .form-input:focus {
+    border-color: var(--green-500);
+    box-shadow: 0 0 0 3px rgba(92, 146, 101, 0.15);
+  }
+  .form-input::placeholder { color: var(--cream-300); }
+
+  .form-input-dark {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
+    color: var(--white);
+  }
+  .form-input-dark::placeholder { color: rgba(255,255,255,0.35); }
+  .form-input-dark:focus {
+    border-color: var(--green-400);
+    box-shadow: 0 0 0 3px rgba(122, 171, 130, 0.2);
+  }
+
+  /* ───────── BADGES ───────── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+  }
+  .badge-green { background: var(--green-100); color: var(--green-800); }
+  .badge-dark  { background: var(--green-900); color: var(--green-200); }
+  .badge-cream { background: var(--cream-100); color: var(--cream-700); border: 1px solid var(--cream-200); }
+  .badge-outline { background: transparent; color: var(--green-700); border: 1px solid var(--green-600); }
+
+  /* ───────── HERO MOCKUP ───────── */
+  .hero-mockup {
+    background: var(--green-900);
+    border-radius: var(--radius-xl);
+    padding: 64px;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero-mockup::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -60px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    pointer-events: none;
+  }
+  .hero-mockup-eyebrow {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green-400);
+    margin-bottom: 16px;
+  }
+  .hero-mockup h2 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .hero-mockup h2 em {
+    font-style: italic;
+    color: var(--green-400);
+    font-weight: 300;
+  }
+  .hero-mockup p {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--green-200);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 400px;
+  }
+  .hero-image-placeholder {
+    background: rgba(255,255,255,0.05);
+    border-radius: var(--radius-lg);
+    aspect-ratio: 4/5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-image-placeholder span {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 20px;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ───────── SECTION BLOCK (CREAM) ───────── */
+  .section-block-cream {
+    background: var(--cream-50);
+    border-radius: var(--radius-xl);
+    padding: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    border: 1px solid var(--cream-100);
+  }
+  .section-block-cream h2 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--green-900);
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+  .section-block-cream h2 em {
+    font-style: italic;
+    color: var(--green-600);
+  }
+  .section-block-cream p {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--cream-700);
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+
+  /* ───────── NAVIGATION ───────── */
+  .nav-mockup {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    border: 1px solid var(--cream-100);
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--green-900);
+    letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream-700);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .nav-links a:hover { color: var(--green-700); }
+  .nav-links a.active { color: var(--green-900); }
+
+  .nav-dark {
+    background: var(--green-900);
+    border-color: transparent;
+  }
+  .nav-dark .nav-logo { color: var(--white); }
+  .nav-dark .nav-links a { color: var(--green-200); }
+  .nav-dark .nav-links a:hover { color: var(--white); }
+
+  /* ───────── DIVIDERS ───────── */
+  .divider { border: none; border-top: 1px solid var(--cream-200); margin: 40px 0; }
+  .divider-dark { border-top-color: rgba(255,255,255,0.1); }
+
+  /* ───────── UTILITY ───────── */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .label-row {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--cream-500);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+  .token-box {
+    background: var(--white);
+    border: 1px solid var(--cream-100);
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+  }
+  .token-name {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--green-700);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .token-desc {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--cream-500);
+    font-weight: 300;
+  }
+  .token-value {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--cream-500);
+    margin-top: 6px;
+  }
+
+  /* ───────── SHADOWS SHOWCASE ───────── */
+  .shadow-demo {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .shadow-demo-label {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: var(--cream-500);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .shadow-demo-value {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--green-600);
+  }
+
+  /* ───────── ICONS ───────── */
+  .icon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .icon-item {
+    background: var(--white);
+    border: 1px solid var(--cream-100);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 80px;
+    transition: box-shadow var(--transition-fast);
+  }
+  .icon-item:hover { box-shadow: var(--shadow-sm); }
+  .icon-item svg { width: 24px; height: 24px; stroke: var(--green-700); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-label {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    color: var(--cream-500);
+    text-align: center;
+  }
+
+  /* ───────── SCROLL TO TOP ───────── */
+  .back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: var(--green-900);
+    color: var(--white);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    text-decoration: none;
+  }
+  .back-to-top:hover { background: var(--green-700); transform: translateY(-2px); }
+</style>
+</head>
+<body>
+
+<!-- ── PAGE HEADER ── -->
+<header class="page-header" id="top">
+  <div class="container" style="position:relative;z-index:1">
+    <p class="page-header-eyebrow">Design System v1.0</p>
+    <h1>Social Brand<br><em>Design Tokens</em></h1>
+    <p>Sistema de design completo extraído da identidade visual — verde floresta, tipografia editorial e estética refinada para negócios premium.</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ── 01. CORES ── -->
+  <section class="section" id="colors">
+    <p class="section-label">01</p>
+    <h2 class="section-title">Paleta de Cores</h2>
+
+    <p class="label-row">Tons Primários — Verde</p>
+    <div class="color-grid" style="margin-bottom:32px">
+      <div class="color-swatch">
+        <div class="color-block" style="background:#1A2E20"></div>
+        <div class="color-info">
+          <p class="color-name">Green 900</p>
+          <p class="color-hex">#1A2E20</p>
+          <p class="color-token">--green-900</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#2B4A33"></div>
+        <div class="color-info">
+          <p class="color-name">Green 800</p>
+          <p class="color-hex">#2B4A33</p>
+          <p class="color-token">--green-800</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#3B6645"></div>
+        <div class="color-info">
+          <p class="color-name">Green 700</p>
+          <p class="color-hex">#3B6645</p>
+          <p class="color-token">--green-700</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#4A7C55"></div>
+        <div class="color-info">
+          <p class="color-name">Green 600</p>
+          <p class="color-hex">#4A7C55</p>
+          <p class="color-token">--green-600</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#5C9265"></div>
+        <div class="color-info">
+          <p class="color-name">Green 500</p>
+          <p class="color-hex">#5C9265</p>
+          <p class="color-token">--green-500</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#7AAB82"></div>
+        <div class="color-info">
+          <p class="color-name">Green 400</p>
+          <p class="color-hex">#7AAB82</p>
+          <p class="color-token">--green-400</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#BDD5C2"></div>
+        <div class="color-info">
+          <p class="color-name">Green 200</p>
+          <p class="color-hex">#BDD5C2</p>
+          <p class="color-token">--green-200</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#E0EDE3"></div>
+        <div class="color-info">
+          <p class="color-name">Green 100</p>
+          <p class="color-hex">#E0EDE3</p>
+          <p class="color-token">--green-100</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#F2F8F3; border:1px solid #E0EDE3"></div>
+        <div class="color-info">
+          <p class="color-name">Green 50</p>
+          <p class="color-hex">#F2F8F3</p>
+          <p class="color-token">--green-50</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="label-row">Neutros — Creme</p>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-block" style="background:#1C1A17"></div>
+        <div class="color-info">
+          <p class="color-name">Cream 900</p>
+          <p class="color-hex">#1C1A17</p>
+          <p class="color-token">--cream-900</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#4A4740"></div>
+        <div class="color-info">
+          <p class="color-name">Cream 700</p>
+          <p class="color-hex">#4A4740</p>
+          <p class="color-token">--cream-700</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#7A7770"></div>
+        <div class="color-info">
+          <p class="color-name">Cream 500</p>
+          <p class="color-hex">#7A7770</p>
+          <p class="color-token">--cream-500</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#C0BDB6"></div>
+        <div class="color-info">
+          <p class="color-name">Cream 300</p>
+          <p class="color-hex">#C0BDB6</p>
+          <p class="color-token">--cream-300</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#D8D5CE"></div>
+        <div class="color-info">
+          <p class="color-name">Cream 200</p>
+          <p class="color-hex">#D8D5CE</p>
+          <p class="color-token">--cream-200</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#EBE8E1"></div>
+        <div class="color-info">
+          <p class="color-name">Cream 100</p>
+          <p class="color-hex">#EBE8E1</p>
+          <p class="color-token">--cream-100</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#F5F2EB; border:1px solid #EBE8E1"></div>
+        <div class="color-info">
+          <p class="color-name">Cream 50</p>
+          <p class="color-hex">#F5F2EB</p>
+          <p class="color-token">--cream-50</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#FFFFFF; border:1px solid #EBE8E1"></div>
+        <div class="color-info">
+          <p class="color-name">White</p>
+          <p class="color-hex">#FFFFFF</p>
+          <p class="color-token">--white</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 02. TIPOGRAFIA ── -->
+  <section class="section" id="typography">
+    <p class="section-label">02</p>
+    <h2 class="section-title">Tipografia</h2>
+
+    <!-- Display -->
+    <p class="label-row">Display — Cormorant Garamond</p>
+    <div style="margin-bottom:32px">
+      <div class="type-sample">
+        <div class="type-sample-text">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:80px; font-weight:300; line-height:1; color:var(--green-900); letter-spacing:-0.02em">Your Socials</div>
+        </div>
+        <div class="type-meta"><strong>Display XL</strong>80px / weight 300<br>letter-spacing: -0.02em</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-sample-text">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:56px; font-weight:400; line-height:1.05; color:var(--green-900)">Start Your Journey</div>
+        </div>
+        <div class="type-meta"><strong>Display L</strong>56px / weight 400<br>line-height: 1.05</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-sample-text">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:500; line-height:1.1; color:var(--green-900)">Online Course</div>
+        </div>
+        <div class="type-meta"><strong>Display M</strong>40px / weight 500<br>line-height: 1.1</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-sample-text">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:400; font-style:italic; color:var(--green-600)">Dreams come true!</div>
+        </div>
+        <div class="type-meta"><strong>Display Script</strong>32px / italic<br>Script accent for headers</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-sample-text">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:500; color:var(--green-900)">Sell Your Products</div>
+        </div>
+        <div class="type-meta"><strong>Display S</strong>24px / weight 500<br>Heading 3</div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <p class="label-row">Body — Libre Baskerville</p>
+    <div style="margin-bottom:32px">
+      <div class="type-sample">
+        <div class="type-sample-text">
+          <div style="font-family:'Libre Baskerville',serif; font-size:18px; font-weight:400; line-height:1.7; color:var(--cream-900)">The premiere training platform for biz owners ready to strengthen their skills on social while connecting with a supportive community of driven entrepreneurs.</div>
+        </div>
+        <div class="type-meta"><strong>Body L</strong>18px / weight 400<br>line-height: 1.7</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-sample-text">
+          <div style="font-family:'Libre Baskerville',serif; font-size:15px; font-weight:400; line-height:1.8; color:var(--cream-700)">Your business is growing faster than you can keep up with. So now is the perfect time to boost your social media presence and reach your ideal audience.</div>
+        </div>
+        <div class="type-meta"><strong>Body M</strong>15px / weight 400<br>line-height: 1.8</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-sample-text">
+          <div style="font-family:'Libre Baskerville',serif; font-size:13px; font-weight:400; line-height:1.7; color:var(--cream-500)">Supporting text and captions. Used for secondary information that complements the main content.</div>
+        </div>
+        <div class="type-meta"><strong>Body S</strong>13px / weight 400<br>Captions & support</div>
+      </div>
+    </div>
+
+    <!-- UI -->
+    <p class="label-row">Interface — Montserrat</p>
+    <div>
+      <div class="type-sample">
+        <div class="type-sample-text">
+          <div style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--cream-700)">READ MORE — JOIN NOW — BOOKED OUT</div>
+        </div>
+        <div class="type-meta"><strong>UI Label</strong>11px / weight 700<br>letter-spacing: 0.2em<br>ALL CAPS — Buttons, CTAs</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-sample-text">
+          <div style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:400; color:var(--cream-700)">Navigation links, form labels, metadata, auxiliary information</div>
+        </div>
+        <div class="type-meta"><strong>UI Body</strong>13px / weight 400<br>Navigation & forms</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 03. SPACING ── -->
+  <section class="section" id="spacing">
+    <p class="section-label">03</p>
+    <h2 class="section-title">Sistema de Espaçamento</h2>
+    <div class="spacing-grid">
+      <div class="spacing-row"><div class="spacing-block" style="width:4px"></div><span class="spacing-label">Space 1</span><span class="spacing-value">4px</span><span class="spacing-token">--space-1</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:8px"></div><span class="spacing-label">Space 2</span><span class="spacing-value">8px</span><span class="spacing-token">--space-2</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:12px"></div><span class="spacing-label">Space 3</span><span class="spacing-value">12px</span><span class="spacing-token">--space-3</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:16px"></div><span class="spacing-label">Space 4</span><span class="spacing-value">16px</span><span class="spacing-token">--space-4</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:24px"></div><span class="spacing-label">Space 5</span><span class="spacing-value">24px</span><span class="spacing-token">--space-5</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:32px"></div><span class="spacing-label">Space 6</span><span class="spacing-value">32px</span><span class="spacing-token">--space-6</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:48px"></div><span class="spacing-label">Space 7</span><span class="spacing-value">48px</span><span class="spacing-token">--space-7</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:64px"></div><span class="spacing-label">Space 8</span><span class="spacing-value">64px</span><span class="spacing-token">--space-8</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:96px"></div><span class="spacing-label">Space 9</span><span class="spacing-value">96px</span><span class="spacing-token">--space-9</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:128px"></div><span class="spacing-label">Space 10</span><span class="spacing-value">128px</span><span class="spacing-token">--space-10</span></div>
+    </div>
+  </section>
+
+  <!-- ── 04. BOTÕES ── -->
+  <section class="section" id="buttons">
+    <p class="section-label">04</p>
+    <h2 class="section-title">Botões</h2>
+
+    <p class="label-row">Variantes Primárias</p>
+    <div class="component-row" style="margin-bottom:32px">
+      <button class="btn btn-primary">Read More</button>
+      <button class="btn btn-outline">Join Now</button>
+      <button class="btn btn-ghost">Learn More →</button>
+      <button class="btn btn-cream">Explore</button>
+    </div>
+
+    <p class="label-row">Tamanhos</p>
+    <div class="component-row" style="margin-bottom:32px">
+      <button class="btn btn-primary btn-sm">Small CTA</button>
+      <button class="btn btn-primary">Default CTA</button>
+      <button class="btn btn-primary btn-lg">Large CTA</button>
+    </div>
+
+    <p class="label-row">Sobre Fundo Escuro</p>
+    <div style="background:var(--green-900); padding:32px; border-radius:var(--radius-lg); margin-bottom:32px">
+      <div class="component-row">
+        <button class="btn" style="background:var(--white);color:var(--green-900);padding:14px 32px;font-size:11px;font-family:var(--font-ui);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px">Read More</button>
+        <button class="btn" style="background:transparent;color:var(--white);padding:13px 31px;font-size:11px;font-family:var(--font-ui);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.4);cursor:pointer;border-radius:2px">Join Now</button>
+        <button class="btn" style="background:transparent;color:var(--green-400);padding:14px 0;font-size:11px;font-family:var(--font-ui);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer">Join →</button>
+      </div>
+    </div>
+
+    <p class="label-row">Ícone</p>
+    <div class="component-row">
+      <button class="btn-icon">→</button>
+      <button class="btn-icon" style="background:var(--green-100);color:var(--green-900)">+</button>
+      <button class="btn-icon" style="background:var(--cream-100);color:var(--cream-900);width:40px;height:40px;font-size:14px">↗</button>
+    </div>
+  </section>
+
+  <!-- ── 05. COMPONENTES ── -->
+  <section class="section" id="components">
+    <p class="section-label">05</p>
+    <h2 class="section-title">Componentes de UI</h2>
+
+    <!-- Navigation -->
+    <p class="label-row" style="margin-bottom:12px">Navegação — Light</p>
+    <nav class="nav-mockup" style="margin-bottom:16px">
+      <span class="nav-logo">Social Studio</span>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Course</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <button class="btn btn-primary btn-sm">Join Now</button>
+    </nav>
+
+    <p class="label-row" style="margin-bottom:12px">Navegação — Dark</p>
+    <nav class="nav-mockup nav-dark" style="margin-bottom:48px">
+      <span class="nav-logo">Social Studio</span>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Course</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <button class="btn" style="background:var(--white);color:var(--green-900);padding:10px 24px;font-size:10px;font-family:var(--font-ui);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px">Join</button>
+    </nav>
+
+    <!-- Badges -->
+    <p class="label-row" style="margin-bottom:12px">Badges & Tags</p>
+    <div class="tag-row" style="margin-bottom:48px">
+      <span class="badge badge-green">Online Course</span>
+      <span class="badge badge-dark">Booked Out</span>
+      <span class="badge badge-cream">New Module</span>
+      <span class="badge badge-outline">Premium</span>
+      <span class="badge badge-green">Social Media</span>
+      <span class="badge badge-dark">Exclusive</span>
+    </div>
+
+    <!-- Cards -->
+    <p class="label-row" style="margin-bottom:12px">Cards</p>
+    <div class="cards-grid" style="margin-bottom:48px">
+      <div class="card">
+        <div class="card-image-placeholder">
+          <span>Online Course</span>
+        </div>
+        <div class="card-body">
+          <p class="card-tag">Online Course</p>
+          <h3 class="card-title">Start Your Journey</h3>
+          <p class="card-desc">The premiere training platform for biz owners ready to strengthen their skills on social.</p>
+          <a href="#" class="card-link">Join now →</a>
+        </div>
+      </div>
+      <div class="card card-dark">
+        <div style="background:rgba(255,255,255,0.05);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center">
+          <span style="font-family:var(--font-display);font-style:italic;font-size:24px;color:rgba(255,255,255,0.3)">Find Your Style</span>
+        </div>
+        <div class="card-body">
+          <p class="card-tag">Social Strategy</p>
+          <h3 class="card-title">Find Your Style & Sell</h3>
+          <p class="card-desc">Your business is growing faster than you can keep up with. Now is the perfect time.</p>
+          <a href="#" class="card-link">Read more →</a>
+        </div>
+      </div>
+      <div class="card" style="border:1px solid var(--cream-100)">
+        <div style="background:var(--cream-50);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center">
+          <span style="font-family:var(--font-display);font-size:24px;font-style:italic;color:var(--cream-300)">Your Socials</span>
+        </div>
+        <div class="card-body">
+          <p class="card-tag">Workshop</p>
+          <h3 class="card-title">Booked Out</h3>
+          <p class="card-desc">Connect with a community of driven entrepreneurs and take your brand to the next level.</p>
+          <a href="#" class="card-link">Learn more →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forms -->
+    <p class="label-row" style="margin-bottom:12px">Formulários</p>
+    <div style="background:var(--white);border:1px solid var(--cream-100);border-radius:var(--radius-lg);padding:40px;margin-bottom:16px">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Nome Completo</label>
+          <input class="form-input" type="text" placeholder="Seu nome">
+        </div>
+        <div class="form-group">
+          <label class="form-label">E-mail</label>
+          <input class="form-input" type="email" placeholder="seu@email.com">
+        </div>
+        <div class="form-group" style="grid-column:1/-1">
+          <label class="form-label">Mensagem</label>
+          <textarea class="form-input" rows="3" placeholder="Como posso te ajudar?" style="resize:vertical"></textarea>
+        </div>
+      </div>
+      <div style="margin-top:24px">
+        <button class="btn btn-primary">Enviar Mensagem</button>
+      </div>
+    </div>
+
+    <div style="background:var(--green-900);border-radius:var(--radius-lg);padding:40px">
+      <p style="font-family:var(--font-display);font-size:28px;font-weight:300;font-style:italic;color:var(--white);margin-bottom:24px">Join the community</p>
+      <div style="display:flex;gap:12px">
+        <input class="form-input form-input-dark" type="email" placeholder="seu@email.com" style="flex:1">
+        <button class="btn" style="background:var(--white);color:var(--green-900);padding:12px 28px;font-size:10px;font-family:var(--font-ui);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;white-space:nowrap">Join Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 06. BORDAS & SOMBRAS ── -->
+  <section class="section" id="elevation">
+    <p class="section-label">06</p>
+    <h2 class="section-title">Border Radius & Sombras</h2>
+
+    <p class="label-row" style="margin-bottom:12px">Border Radius</p>
+    <div class="three-col" style="margin-bottom:48px">
+      <div class="token-box">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="width:40px;height:40px;background:var(--green-500);border-radius:2px"></div>
+          <div>
+            <p class="token-name">--radius-sm</p>
+            <p class="token-value">2px — Botões, tags</p>
+          </div>
+        </div>
+      </div>
+      <div class="token-box">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="width:40px;height:40px;background:var(--green-500);border-radius:4px"></div>
+          <div>
+            <p class="token-name">--radius-md</p>
+            <p class="token-value">4px — Inputs, forms</p>
+          </div>
+        </div>
+      </div>
+      <div class="token-box">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="width:40px;height:40px;background:var(--green-500);border-radius:8px"></div>
+          <div>
+            <p class="token-name">--radius-lg</p>
+            <p class="token-value">8px — Cards, nav</p>
+          </div>
+        </div>
+      </div>
+      <div class="token-box">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;background:var(--green-500);border-radius:16px"></div>
+          <div>
+            <p class="token-name">--radius-xl</p>
+            <p class="token-value">16px — Hero, sections</p>
+          </div>
+        </div>
+      </div>
+      <div class="token-box">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;background:var(--green-500);border-radius:999px"></div>
+          <div>
+            <p class="token-name">--radius-pill</p>
+            <p class="token-value">999px — Badges, chips</p>
+          </div>
+        </div>
+      </div>
+      <div class="token-box">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;background:var(--green-500);border-radius:50%"></div>
+          <div>
+            <p class="token-name">border-radius: 50%</p>
+            <p class="token-value">Avatares, ícones circulares</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="label-row" style="margin-bottom:12px">Elevação / Sombras</p>
+    <div class="three-col">
+      <div class="shadow-demo" style="box-shadow:var(--shadow-sm)">
+        <p class="shadow-demo-label">Shadow SM</p>
+        <p class="shadow-demo-value">--shadow-sm</p>
+        <p style="font-family:var(--font-ui);font-size:11px;color:var(--cream-500);margin-top:4px">Cards padrão</p>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-md)">
+        <p class="shadow-demo-label">Shadow MD</p>
+        <p class="shadow-demo-value">--shadow-md</p>
+        <p style="font-family:var(--font-ui);font-size:11px;color:var(--cream-500);margin-top:4px">Cards hover, botões</p>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-lg)">
+        <p class="shadow-demo-label">Shadow LG</p>
+        <p class="shadow-demo-value">--shadow-lg</p>
+        <p style="font-family:var(--font-ui);font-size:11px;color:var(--cream-500);margin-top:4px">Modais, dropdowns</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 07. MOCKUP DE PÁGINA ── -->
+  <section class="section" id="mockups">
+    <p class="section-label">07</p>
+    <h2 class="section-title">Mockup de Página</h2>
+
+    <!-- Hero Dark -->
+    <p class="label-row" style="margin-bottom:12px">Hero — Fundo Verde (Variante Principal)</p>
+    <div class="hero-mockup" style="margin-bottom:24px">
+      <div style="position:relative;z-index:1">
+        <p class="hero-mockup-eyebrow">Social Studio</p>
+        <h2>Your Socials Can<br>Work For You.<br><em>Find Your Style</em></h2>
+        <p>Your business is growing faster than you can keep up with. So now is the perfect time to boost your social media.</p>
+        <div style="display:flex;gap:16px;align-items:center">
+          <button class="btn" style="background:var(--white);color:var(--green-900);padding:14px 32px;font-size:11px;font-family:var(--font-ui);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px">Read More</button>
+          <a href="#" style="font-family:var(--font-ui);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--green-400);text-decoration:none">Join Now →</a>
+        </div>
+        <p style="font-family:var(--font-display);font-style:italic;font-size:28px;font-weight:300;color:var(--green-400);margin-top:24px">Booked out!</p>
+      </div>
+      <div class="hero-image-placeholder">
+        <span>Photo Area</span>
+      </div>
+    </div>
+
+    <!-- Section Cream -->
+    <p class="label-row" style="margin-bottom:12px">Seção — Fundo Creme (Variante Secundária)</p>
+    <div class="section-block-cream" style="margin-bottom:24px">
+      <div>
+        <p style="font-family:var(--font-ui);font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--green-500);margin-bottom:8px">Online Course</p>
+        <h2>Start Your Journey<br><em>Dreams come true!</em></h2>
+        <p>The premiere training platform for biz owners ready to strengthen their skills on social while connecting with a supportive community of driven entrepreneurs.</p>
+        <div style="display:flex;gap:16px;align-items:center">
+          <button class="btn btn-primary">Join Now</button>
+          <a href="#" style="font-family:var(--font-ui);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--green-700);text-decoration:none">Learn More →</a>
+        </div>
+      </div>
+      <div style="background:var(--cream-100);border-radius:var(--radius-lg);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-display);font-style:italic;font-size:20px;color:var(--cream-300)">Photo Area</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 08. TOKENS DE DESIGN ── -->
+  <section class="section" id="tokens">
+    <p class="section-label">08</p>
+    <h2 class="section-title">Todos os Tokens</h2>
+
+    <p class="label-row" style="margin-bottom:12px">Transições</p>
+    <div class="three-col" style="margin-bottom:40px">
+      <div class="token-box">
+        <p class="token-name">--transition-fast</p>
+        <p class="token-desc">Hover, focus, micro-interactions</p>
+        <p class="token-value">150ms cubic-bezier(0.4, 0, 0.2, 1)</p>
+      </div>
+      <div class="token-box">
+        <p class="token-name">--transition-base</p>
+        <p class="token-desc">Botões, cards, cores</p>
+        <p class="token-value">250ms cubic-bezier(0.4, 0, 0.2, 1)</p>
+      </div>
+      <div class="token-box">
+        <p class="token-name">--transition-slow</p>
+        <p class="token-desc">Animações de entrada, modais</p>
+        <p class="token-value">400ms cubic-bezier(0.4, 0, 0.2, 1)</p>
+      </div>
+    </div>
+
+    <p class="label-row" style="margin-bottom:12px">Fontes</p>
+    <div class="three-col" style="margin-bottom:40px">
+      <div class="token-box">
+        <p class="token-name">--font-display</p>
+        <p class="token-desc">Headlines, títulos de seção</p>
+        <p class="token-value">'Cormorant Garamond'</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--green-900);margin-top:8px">Aa Bb Cc 123</p>
+      </div>
+      <div class="token-box">
+        <p class="token-name">--font-body</p>
+        <p class="token-desc">Parágrafos e texto de corpo</p>
+        <p class="token-value">'Libre Baskerville'</p>
+        <p style="font-family:'Libre Baskerville',serif;font-size:15px;color:var(--green-900);margin-top:8px">Aa Bb Cc 123</p>
+      </div>
+      <div class="token-box">
+        <p class="token-name">--font-ui</p>
+        <p class="token-desc">Botões, labels, navegação</p>
+        <p class="token-value">'Montserrat'</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;color:var(--green-900);margin-top:8px">Aa Bb Cc 123</p>
+      </div>
+    </div>
+
+    <p class="label-row" style="margin-bottom:12px">Uso de Cores por Contexto</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="token-box">
+        <p class="token-name" style="margin-bottom:10px">Backgrounds</p>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;gap:8px;align-items:center"><div style="width:16px;height:16px;background:var(--green-900);border-radius:2px;flex-shrink:0"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:var(--cream-500)">--green-900 · Hero, Header, CTA seções</span></div>
+          <div style="display:flex;gap:8px;align-items:center"><div style="width:16px;height:16px;background:var(--cream-50);border:1px solid #EBE8E1;border-radius:2px;flex-shrink:0"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:var(--cream-500)">--cream-50 · Page background padrão</span></div>
+          <div style="display:flex;gap:8px;align-items:center"><div style="width:16px;height:16px;background:var(--white);border:1px solid #EBE8E1;border-radius:2px;flex-shrink:0"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:var(--cream-500)">--white · Cards, formulários, nav</span></div>
+        </div>
+      </div>
+      <div class="token-box">
+        <p class="token-name" style="margin-bottom:10px">Texto</p>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;gap:8px;align-items:center"><div style="width:16px;height:16px;background:var(--cream-900);border-radius:2px;flex-shrink:0"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:var(--cream-500)">--cream-900 · Headings em fundo claro</span></div>
+          <div style="display:flex;gap:8px;align-items:center"><div style="width:16px;height:16px;background:var(--cream-500);border-radius:2px;flex-shrink:0"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:var(--cream-500)">--cream-500 · Body text secundário</span></div>
+          <div style="display:flex;gap:8px;align-items:center"><div style="width:16px;height:16px;background:var(--green-400);border-radius:2px;flex-shrink:0"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:var(--cream-500)">--green-400 · Texto accent em fundo dark</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="background:var(--green-900);color:var(--green-200);padding:48px 80px;margin-top:0">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center">
+    <div>
+      <p style="font-family:var(--font-display);font-size:24px;font-weight:300;color:var(--white);margin-bottom:4px">Social Brand</p>
+      <p style="font-family:var(--font-ui);font-size:11px;font-weight:300;letter-spacing:0.1em">Design System v1.0</p>
+    </div>
+    <div style="text-align:right">
+      <p style="font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--green-400);margin-bottom:4px">Seções</p>
+      <p style="font-family:var(--font-ui);font-size:12px;font-weight:300;color:var(--green-200)">Cores · Tipografia · Espaçamento · Botões · Componentes · Elevação · Mockups · Tokens</p>
+    </div>
+  </div>
+</footer>
+
+<a href="#top" class="back-to-top">↑</a>
+
+</body>
+</html>
